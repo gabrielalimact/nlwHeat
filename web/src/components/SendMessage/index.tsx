@@ -3,6 +3,7 @@ import { VscGithubInverted, VscSignOut } from 'react-icons/vsc'
 import { AuthContext, AuthProvider } from '../../contexts/auth'
 import { api } from '../../services/api'
 import styles from './styles.module.scss'
+import sealSvg from '../../assets/seal.svg'
 
 export function SendMessage() {
     const { user, signOut } = useContext(AuthContext)
@@ -14,15 +15,17 @@ export function SendMessage() {
             return;
         }
         await api.post('/messages', { message })
-
+        console.log("Mensagem enviada")
         setMessage('');
     }
 
     return (
         <div className={styles.sendMessageWrapper}>
+            <img src={sealSvg} className={styles.seal}/>
             <button className={styles.signOutButton} onClick={signOut}>
                 <VscSignOut size='32' />
             </button>
+            
 
             <header className={styles.userInformation}>
                 <div className={styles.userImage}>
