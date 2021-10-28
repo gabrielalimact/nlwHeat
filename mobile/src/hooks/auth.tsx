@@ -55,22 +55,21 @@ function AuthProvider({ children } : AuthProviderProps){
             const authUrl=`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPE}`
             const authSessionResponse = await AuthSessions.startAsync({ authUrl }) as AuthorizationResponse
             
-            if(authSessionResponse.type === 'success' && authSessionResponse.params.error != 'access_denied'){
+            if(authSessionResponse.type === 'success' && authSessionResponse.params.error !== 'access_denied'){
                 const authResponse = await api.post('/authenticate', { code: authSessionResponse.params.code })
                 
                 const { token, user } = authResponse.data as AuthResponse
 
                 api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-                await AsyncStorage.setItem(tokenStorage, JSON.stringify(token))
+                await AsyncStorage.setItem(tokenStorage, token)
                 await AsyncStorage.setItem(userStorage, JSON.stringify(user))
 
 
                 setUser(user)
             }
-            setIsSignIn(false)
 
         }catch (error) {
-        console.log(error)
+            console.log(error)
         } finally {
             setIsSignIn(false)
         }
