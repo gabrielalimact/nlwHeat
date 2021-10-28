@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {
     TextInput,
-  View
+  View, KeyboardAvoidingView,
 } from 'react-native';
 import { COLORS } from '../../theme';
 import { Button } from '../Button';
