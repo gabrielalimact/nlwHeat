@@ -10,3 +10,4 @@ Projeto desenvolvido durante a semana NLW Heat, disponibilizado pela Rocketseat.
 - ReactJS
 - React Native
 - Expo
+- Axios
